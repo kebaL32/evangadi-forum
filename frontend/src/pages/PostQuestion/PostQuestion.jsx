@@ -73,7 +73,7 @@ export default function PostQuestion() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "https://evangadi-forum-1-bzz2.onrender.com/api/questions",
+        `${import.meta.env.VITE_API_URL}/api/questions`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -110,7 +110,7 @@ export default function PostQuestion() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "https://evangadi-forum-1-bzz2.onrender.com/api/questions/draft-coach",
+        `${import.meta.env.VITE_API_URL}/api/questions/draft-coach`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -70,7 +70,7 @@ export default function QuestionDetail() {
         const token = localStorage.getItem("token");
 
         const { data } = await axios.get(
-          `https://evangadi-forum-1-bzz2.onrender.com/api/questions/${questionHash}`,
+          `${import.meta.env.VITE_API_URL}/api/questions/${questionHash}`,
           { headers: { Authorization: `Bearer ${token}` } },
         );
 
@@ -92,7 +92,7 @@ useEffect(() => {
       setRelatedLoading(true);
       const token = localStorage.getItem("token");
       const { data } = await axios.get(
-        `https://evangadi-forum-1-bzz2.onrender.com/api/questions/${questionHash}/similar`,
+        `${import.meta.env.VITE_API_URL}/api/questions/${questionHash}/similar`,
         { headers: { Authorization: `Bearer ${token}` } },
       );
       setRelatedQuestions(data.data ?? []);
@@ -114,7 +114,7 @@ useEffect(() => {
       setPostError(null);
       const token = localStorage.getItem("token");
       const { data } = await axios.post(
-        `https://evangadi-forum-1-bzz2.onrender.com/api/answers`,
+        `${import.meta.env.VITE_API_URL}/api/answers`,
         {
           questionId: question.id,
           content: answerText.trim(),
@@ -145,7 +145,7 @@ useEffect(() => {
       setFitResult(null);
       const token = localStorage.getItem("token");
       const { data } = await axios.post(
-        `https://evangadi-forum-1-bzz2.onrender.com/api/questions/${questionHash}/answer-fit`,
+        `${import.meta.env.VITE_API_URL}/api/questions/${questionHash}/answer-fit`,
         { answerText: answerText.trim() },
         { headers: { Authorization: `Bearer ${token}` } },
       );

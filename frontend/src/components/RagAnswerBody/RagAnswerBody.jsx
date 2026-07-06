@@ -35,7 +35,7 @@ import {
 } from "lucide-react";
 import styles from "./RagAnswerBody.module.css";
 
-const RAG_API_BASE = "https://evangadi-forum-1-bzz2.onrender.com/api/rag";
+const RAG_API_BASE = import.meta.env.VITE_API_URL + "/api/rag";
 
 const TABS = [
   { id: "preview", label: "PDF Preview", icon: FileText },

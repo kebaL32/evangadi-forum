@@ -146,8 +146,8 @@ export default function Dashboard() {
 
         // Only call the vector endpoint for semantic; everything else → base URL
         const targetUrl = semanticQuery
-          ? `https://evangadi-forum-1-bzz2.onrender.com/api/questions/search?query=${encodeURIComponent(semanticQuery)}`
-          : "https://evangadi-forum-1-bzz2.onrender.com/api/questions";
+          ? `${import.meta.env.VITE_API_URL}/api/questions/search?query=${encodeURIComponent(semanticQuery)}`
+          : `${import.meta.env.VITE_API_URL}/api/questions`;
 
         const response = await axios.get(targetUrl, {
           headers: { Authorization: `Bearer ${token}` },
