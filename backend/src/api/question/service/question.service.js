@@ -163,7 +163,7 @@ export const getQuestionsService = async (filters) => {
   LIMIT ${normalizedLimit} OFFSET ${normalizedOffset}
 `;
 
-const rows = await safeExecute(listSql, params);
+ const rows = await safeExecute(listSql, params);
 
   return {
     data: rows.map((question) => ({
