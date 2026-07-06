@@ -10,7 +10,7 @@ const port = process.env.PORT;
 // Middleware
 const allowedOrigins = [
   "http://localhost:5173", // For local development testing
-  "https://evangadiforumef.netlify.app", // Your live production Netlify app
+  "https://evangadiforumem.netlify.app", // Your live production Netlify
 ];
 
 app.use(
@@ -24,7 +24,7 @@ app.use(
       }
     },
     credentials: true,
-  })
+  }) 
 );
 // app.use(cors());
 app.use(express.json());
