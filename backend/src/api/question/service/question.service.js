@@ -142,32 +142,28 @@ export const getQuestionsService = async (filters) => {
   const totalCount = countRows[0]?.totalCount || 0;
 
   // Get paginated results
-  const listSql = `
-    SELECT
-        q.question_id AS id,
-        q.question_hash AS questionHash,
-        q.title,
-        q.content,
-        q.created_at AS createdAt,
-        q.updated_at AS updatedAt,
-        u.user_id AS userId,
-        u.first_name AS firstName,
-        u.last_name AS lastName,
-        COUNT(DISTINCT a.answer_id) AS answerCount
-    FROM questions q
-    JOIN users u ON u.user_id = q.user_id
-    LEFT JOIN answers a ON a.question_id = q.question_id
-    ${whereClause}
-    GROUP BY q.question_id, u.user_id
-    ORDER BY ${sortColumn} ${normalizedSortOrder}
-    LIMIT ? OFFSET ?
-  `;
+ const listSql = `
+  SELECT
+      q.question_id AS id,
+      q.question_hash AS questionHash,
+      q.title,
+      q.content,
+      q.created_at AS createdAt,
+      q.updated_at AS updatedAt,
+      u.user_id AS userId,
+      u.first_name AS firstName,
+      u.last_name AS lastName,
+      COUNT(DISTINCT a.answer_id) AS answerCount
+  FROM questions q
+  JOIN users u ON u.user_id = q.user_id
+  LEFT JOIN answers a ON a.question_id = q.question_id
+  ${whereClause}
+  GROUP BY q.question_id, u.user_id
+  ORDER BY ${sortColumn} ${normalizedSortOrder}
+  LIMIT ${normalizedLimit} OFFSET ${normalizedOffset}
+`;
 
-  const rows = await safeExecute(listSql, [
-    ...params,
-    normalizedLimit,
-    normalizedOffset,
-  ]);
+const rows = await safeExecute(listSql, params);
 
   return {
     data: rows.map((question) => ({
